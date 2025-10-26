@@ -9,7 +9,8 @@ const NoteDetailsClient = ({id}: NoteDetailsClientProps) => {
 
   const {data,isLoading, error} = useQuery({
     queryKey:["note", id],
-    queryFn: () => fetchNoteById(id)
+    queryFn: () => fetchNoteById(id),
+    refetchOnMount: false
   })
 
   if(isLoading) {
@@ -26,7 +27,7 @@ const NoteDetailsClient = ({id}: NoteDetailsClientProps) => {
           <h2>{data?.title}</h2>
         </div>
         <p className={css.content}>{data?.content}</p>
-        <p className={css.date}>{data?.updatedAt}</p>
+        <p className={css.date}>{data?.createdAt}</p>
       </div>
     </div>
   );
